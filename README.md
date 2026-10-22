@@ -1,17 +1,31 @@
-# stateless_lab_khen
+# Campus Student Directory
 
-A new Flutter project.
+**Name:** Khen
+**Activity:** Stateless Widgets Laboratory — Campus Student Directory (Flutter)
 
-## Getting Started
+A one-screen Flutter app that shows a directory of students built entirely from
+small, reusable `StatelessWidget` classes. No `StatefulWidget` and no
+`setState` is used anywhere: all data is hard-coded and flows into each widget
+through its constructor.
 
-This project is a starting point for a Flutter application.
+## Widgets
 
-A few resources to get you started if this is your first Flutter project:
+| Widget | Responsibility |
+| --- | --- |
+| `Student` | Immutable data class (`final` fields, `const` constructor) |
+| `DirectoryApp` | `MaterialApp` with a teal `colorSchemeSeed`, Material 3 |
+| `DirectoryScreen` | `Scaffold`, `AppBar` and `ListView` of student cards |
+| `SectionHeader` | Bold colored heading with a `Divider` below |
+| `StudentCard` | `Card` with `CircleAvatar`, name, course and two `InfoRow`s |
+| `InfoRow` | Icon + text side by side in a `Row` |
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## Screenshot
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![App screenshot](screenshots/app.png)
+
+## Run it
+
+```bash
+flutter pub get
+flutter run
+```
