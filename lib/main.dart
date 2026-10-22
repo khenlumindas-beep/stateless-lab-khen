@@ -21,28 +21,28 @@ class Student {
 /// Hard-coded directory data; there is no user input, so the list is constant.
 const List<Student> students = [
   Student(
-    name: 'Angela Dizon',
+    name: 'Potcolo gonzales',
     course: 'BS Computer Science',
     yearLevel: 3,
-    email: 'angela.dizon@university.edu',
+    email: 'potcolo.gonzales@university.edu',
   ),
   Student(
-    name: 'Marco Reyes',
+    name: 'Elias zambales',
     course: 'BS Information Technology',
     yearLevel: 2,
-    email: 'marco.reyes@university.edu',
+    email: 'elias.zambales@university.edu',
   ),
   Student(
-    name: 'Bea Santos',
+    name: 'Rene Valdez',
     course: 'BS Electronics Engineering',
     yearLevel: 4,
-    email: 'bea.santos@university.edu',
+    email: 'rene.valdez @university.edu',
   ),
   Student(
-    name: 'Carlo Villanueva',
+    name: 'Rico Villanueva ',
     course: 'BS Mathematics',
     yearLevel: 1,
-    email: 'carlo.villanueva@university.edu',
+    email: 'rico.villanueva@university.edu',
   ),
   Student(
     name: 'Diana Lim',
@@ -68,9 +68,9 @@ class DirectoryApp extends StatelessWidget {
     return MaterialApp(
       title: 'Campus Directory',
       debugShowCheckedModeBanner: false,
-      // CUSTOMIZATION 1: theme seed color chosen by hand instead of the default blue.
+      
       theme: ThemeData(
-        colorSchemeSeed: Colors.teal,
+        colorSchemeSeed: const Color.fromARGB(255, 116, 2, 35),
         useMaterial3: true,
         // CUSTOMIZATION 2: rounded 18 px card corners applied to every Card.
         cardTheme: const CardThemeData(
@@ -89,8 +89,6 @@ class DirectoryApp extends StatelessWidget {
   }
 }
 
-/// Stateless because the screen is a fixed layout: its data comes from the
-/// constant `students` list, so only a parent could ever supply new data.
 class DirectoryScreen extends StatelessWidget {
   const DirectoryScreen({super.key});
 
