@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const DirectoryApp()); // sinugdanan sa app
+void main() => runApp(const DirectoryApp());
 
 /// Immutable student record — every field is final, so the data never changes
 /// after it is created and can be shared safely by stateless widgets.
@@ -19,7 +19,6 @@ class Student {
 }
 
 /// Hard-coded directory data; there is no user input, so the list is constant.
-/// Bisaya: kini ang listahan sa estudyante nga mo-gawas matag usa ka card.
 const List<Student> students = [
   Student(
     name: 'Potcolo gonzales',
@@ -71,11 +70,10 @@ class DirectoryApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       
       theme: ThemeData(
-        // ang kolor niini ang basihan sa tibuok app (appbar, icon, text)
         colorSchemeSeed: const Color.fromARGB(255, 116, 2, 35),
         useMaterial3: true,
         // CUSTOMIZATION 2: rounded 18 px card corners applied to every Card.
-        cardTheme: const CardThemeData( // hugot ang lingin sa ngutngut sa card
+        cardTheme: const CardThemeData(
           elevation: 2,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(18)),
@@ -86,7 +84,7 @@ class DirectoryApp extends StatelessWidget {
           bodyMedium: TextStyle(height: 1.35),
         ),
       ),
-      home: const DirectoryScreen(), // ang screen nga mobukas
+      home: const DirectoryScreen(),
     );
   }
 }
@@ -96,20 +94,20 @@ class DirectoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( // ang tibuok layout sa screen
+    return Scaffold(
       // CUSTOMIZATION 4: AppBar tinted from the theme's primary container color.
-      appBar: AppBar( // taas nga bar sa ibabaw
-        title: const Text('Campus Directory'), // ang title nga mobasa sa bar
+      appBar: AppBar(
+        title: const Text('Campus Directory'),
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       ),
-      body: ListView( // dinhi mo-scroll ang listahan sa mga card
+      body: ListView(
         // CUSTOMIZATION 5: extra breathing room around the whole list.
-        padding: const EdgeInsets.fromLTRB(16, 16, 16, 24), // luyo nga kahilom sa sulod
+        padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
         children: [
-          const SectionHeader(title: 'Students'), // ang "Students" nga heading
+          const SectionHeader(title: 'Students'),
           // The parent maps the data into widgets; when the list changes the
           // parent rebuilds this widget with a different set of children.
-          for (final student in students) StudentCard(student: student), // matag student = usa ka card
+          for (final student in students) StudentCard(student: student),
         ],
       ),
     );
@@ -125,19 +123,19 @@ class SectionHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column( // gilatid: heading + linya sa ilalom
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // CUSTOMIZATION 6: heading styled bold and colored from the theme seed.
-        Text( // ang pulong nga "Students" (bold, colored)
+        Text(
           title,
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
                 color: Theme.of(context).colorScheme.primary,
               ),
         ),
-        const SizedBox(height: 4), // gamayng space
-        const Divider(thickness: 2), // ang linya sa ilalom sa heading
+        const SizedBox(height: 4),
+        const Divider(thickness: 2),
       ],
     );
   }
@@ -154,29 +152,29 @@ class StudentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final ColorScheme colors = Theme.of(context).colorScheme;
 
-    return Card( // ang puti nga kahon sa matag estudyante
-      margin: const EdgeInsets.only(bottom: 12), // space tali sa mga card
+    return Card(
+      margin: const EdgeInsets.only(bottom: 12),
       child: Padding(
-        padding: const EdgeInsets.all(16), // sulod nga kahilom sa card
-        child: Row( // kaliwa: avatar, tuo: mga text
+        padding: const EdgeInsets.all(16),
+        child: Row(
           children: [
             // CUSTOMIZATION 7: avatar tinted with the theme's secondary color.
-            CircleAvatar( // ang bulot nga naay unang letter sa ngalan
+            CircleAvatar(
               radius: 26,
               backgroundColor: colors.secondaryContainer,
               foregroundColor: colors.onSecondaryContainer,
               child: Text(
-                student.name[0], // unang letter lang, e.g. "P" sa Potcolo
+                student.name[0],
                 style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
             ),
-            const SizedBox(width: 16), // space tali sa avatar ug text
-            Expanded( // para dili mo-overflow ang text sa kahon
+            const SizedBox(width: 16),
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // CUSTOMIZATION 8: name given its own bold, larger text style.
-                  Text( // ang NGALAN sa estudyante (bold)
+                  Text(
                     student.name,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w700,
@@ -184,16 +182,16 @@ class StudentCard extends StatelessWidget {
                         ),
                   ),
                   const SizedBox(height: 2),
-                  Text( // ang KURSO, e.g. BS Computer Science
+                  Text(
                     student.course,
                     style: TextStyle(color: colors.onSurfaceVariant),
                   ),
                   const SizedBox(height: 10),
-                  InfoRow( // "Year 3" + icon sa graduation cap
+                  InfoRow(
                     icon: Icons.school,
                     text: 'Year ${student.yearLevel}',
                   ),
-                  InfoRow( // ang email address + email icon
+                  InfoRow(
                     icon: Icons.email,
                     text: student.email,
                   ),
@@ -218,13 +216,13 @@ class InfoRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 4), // gamayng space sa ilalom
-      child: Row( // icon + text pareho sa linya
+      padding: const EdgeInsets.only(bottom: 4),
+      child: Row(
         children: [
-          Icon(icon, size: 16, color: Theme.of(context).colorScheme.primary), // ang gamayng icon
-          const SizedBox(width: 8), // gap tali sa icon ug text
+          Icon(icon, size: 16, color: Theme.of(context).colorScheme.primary),
+          const SizedBox(width: 8),
           Expanded(
-            child: Text( // ang teksto, e.g. "Year 3" o ang email
+            child: Text(
               text,
               style: Theme.of(context).textTheme.bodySmall,
               overflow: TextOverflow.ellipsis,
