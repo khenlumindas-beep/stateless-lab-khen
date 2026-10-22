@@ -68,9 +68,21 @@ class DirectoryApp extends StatelessWidget {
     return MaterialApp(
       title: 'Campus Directory',
       debugShowCheckedModeBanner: false,
+      // CUSTOMIZATION 1: theme seed color chosen by hand instead of the default blue.
       theme: ThemeData(
         colorSchemeSeed: Colors.teal,
         useMaterial3: true,
+        // CUSTOMIZATION 2: rounded 18 px card corners applied to every Card.
+        cardTheme: const CardThemeData(
+          elevation: 2,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(18)),
+          ),
+        ),
+        // CUSTOMIZATION 3: tighter default text theme for a denser directory look.
+        textTheme: const TextTheme(
+          bodyMedium: TextStyle(height: 1.35),
+        ),
       ),
       home: const DirectoryScreen(),
     );
@@ -85,11 +97,18 @@ class DirectoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Campus Directory')),
+      // CUSTOMIZATION 4: AppBar tinted from the theme's primary container color.
+      appBar: AppBar(
+        title: const Text('Campus Directory'),
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+      ),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        // CUSTOMIZATION 5: extra breathing room around the whole list.
+        padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
         children: [
           const SectionHeader(title: 'Students'),
+          // The parent maps the data into widgets; when the list changes the
+          // parent rebuilds this widget with a different set of children.
           for (final student in students) StudentCard(student: student),
         ],
       ),
@@ -109,6 +128,7 @@ class SectionHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // CUSTOMIZATION 6: heading styled bold and colored from the theme seed.
         Text(
           title,
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -140,6 +160,7 @@ class StudentCard extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Row(
           children: [
+            // CUSTOMIZATION 7: avatar tinted with the theme's secondary color.
             CircleAvatar(
               radius: 26,
               backgroundColor: colors.secondaryContainer,
@@ -154,6 +175,7 @@ class StudentCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // CUSTOMIZATION 8: name given its own bold, larger text style.
                   Text(
                     student.name,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
